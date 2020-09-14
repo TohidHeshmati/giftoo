@@ -20,10 +20,7 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
-    @NotNull
-    private short direction;
-
-    @NotNull
+    @NotNull(message = "comment can not have no text") @NonNull
     @Size(max = 255)
     private String text;
 

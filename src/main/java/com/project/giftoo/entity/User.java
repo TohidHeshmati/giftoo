@@ -31,7 +31,7 @@ public class User {
     @Size(min = 8, max = 31)
     private String email;
 
-    @NotNull
+    @NotNull @NonNull
     private String userName;
 
     @Lob

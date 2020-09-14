@@ -4,8 +4,7 @@ import lombok.NonNull;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.Collection;
+import javax.validation.constraints.NotNull;
 
 public class Role {
 
@@ -13,7 +12,7 @@ public class Role {
     @GeneratedValue
     private Long id;
 
-    @NonNull
+    @NonNull @NotNull(message = "name of the role is a must")
     private String name;
 
 //    @ManyToMany( mappedBy = "roles")

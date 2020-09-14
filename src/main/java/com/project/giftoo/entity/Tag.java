@@ -20,7 +20,7 @@ public class Tag {
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotNull @NonNull
     @Size(max = 15)
     private String text;
 

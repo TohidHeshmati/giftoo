@@ -28,12 +28,14 @@ public class Wish {
 
     private String link;
 
+    @NonNull
     private String name;
 
     private BigDecimal priceFrom;
 
     private BigDecimal priceTo;
 
+    @NonNull
     private byte priority;
 
 

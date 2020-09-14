@@ -18,7 +18,7 @@ public class Vote {
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotNull(message = "upvote or down-vote should be set") @NonNull
     private short upOrDown;
 
     @ManyToOne
