@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString
 @Entity
-public class WishList {
+public class WishList extends Auditable {
     //TODO user
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,7 +13,7 @@ import java.util.*;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Wish {
+public class Wish extends Auditable {
     //TODO to: user
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

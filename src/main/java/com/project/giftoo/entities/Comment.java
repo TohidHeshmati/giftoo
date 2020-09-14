@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Comment {
+public class Comment extends Auditable {
     //TODO to: user
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
