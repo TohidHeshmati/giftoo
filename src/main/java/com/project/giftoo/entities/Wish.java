@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -35,6 +36,7 @@ public class Wish extends Auditable {
     private BigDecimal priceTo;
 
     @NonNull
+    @Size(min = 0, max = 10)
     private byte priority;
 
 
