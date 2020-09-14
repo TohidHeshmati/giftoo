@@ -16,8 +16,7 @@ import java.util.*;
 public class Wish {
     //TODO to: user
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull

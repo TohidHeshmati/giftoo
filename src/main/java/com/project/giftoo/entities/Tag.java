@@ -16,8 +16,7 @@ import java.util.List;
 @Entity
 public class Tag {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull @NonNull

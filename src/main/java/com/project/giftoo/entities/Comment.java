@@ -16,8 +16,7 @@ import java.util.List;
 public class Comment {
     //TODO to: user
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "comment can not have no text") @NonNull

@@ -14,8 +14,7 @@ import javax.validation.constraints.NotNull;
 public class Vote {
     //TODO to: user
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "upvote or down-vote should be set") @NonNull
