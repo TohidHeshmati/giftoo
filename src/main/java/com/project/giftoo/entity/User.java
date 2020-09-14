@@ -16,6 +16,7 @@ import java.util.UUID;
 public class User {
 
     // TODO implement User and Role Entity at the end
+    // TODO to: wishlist, wish, vote, comment
 
     @Id
     @NotNull

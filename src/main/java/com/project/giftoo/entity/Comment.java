@@ -1,5 +1,38 @@
 package com.project.giftoo.entity;
 
+import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+
+@Setter @Getter
+@RequiredArgsConstructor
+@NoArgsConstructor
+@ToString
+@Entity
 public class Comment {
-    //TODO id, text
+    //TODO to: user
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @NotNull
+    private short direction;
+
+    @NotNull
+    @Size(max = 255)
+    private String text;
+
+    @OneToMany
+    @JoinColumn(name = "vote")
+    private List<Vote> votes = new ArrayList<>();
+
+    @NotNull
+    @ManyToOne
+    private Wish wish;
+
 }
