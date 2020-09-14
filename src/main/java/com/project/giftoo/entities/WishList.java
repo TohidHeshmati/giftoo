@@ -1,4 +1,4 @@
-package com.project.giftoo.entity;
+package com.project.giftoo.entities;
 
 import lombok.*;
 
