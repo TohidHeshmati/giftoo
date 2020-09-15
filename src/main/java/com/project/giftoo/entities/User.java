@@ -44,7 +44,4 @@ public class User {
     @DateTimeFormat
     private Date birthDate;
 
-
-
-
 }
