@@ -1,42 +1,53 @@
 package com.project.giftoo.clrunner;
 
-import com.project.giftoo.entities.Comment;
-import com.project.giftoo.entities.Tag;
-import com.project.giftoo.entities.Wish;
-import com.project.giftoo.entities.WishList;
+import com.project.giftoo.entities.*;
 import com.project.giftoo.repositories.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 @Component
 public class EntityLoader implements CommandLineRunner {
+
+    //TODO a very big todo here: separate different entities in methods and load them in DB. just simple hard work.
 
     private WishRepository wishRepository;
     private TagRepository tagRepository;
     private VoteRepository voteRepository;
     private WishListRepository wishListRepository;
     private CommentRepository commentRepository;
+    private RoleRepository roleRepository;
+    private UserRepository userRepository;
 
     public EntityLoader(
                         WishRepository wishRepository,
                         TagRepository tagRepository,
                         VoteRepository voteRepository,
                         WishListRepository wishListRepository,
-                        CommentRepository commentRepository
+                        CommentRepository commentRepository,
+                        RoleRepository roleRepository,
+                        UserRepository userRepository
     ) {
         this.wishRepository = wishRepository;
         this.tagRepository = tagRepository;
         this.voteRepository = voteRepository;
         this.wishListRepository = wishListRepository;
         this.commentRepository = commentRepository;
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
         System.out.println("writing entities in DB");
+        System.out.println("------------------------------------------------");
+        loadUserAndRoles();
+        System.out.println("user and roles written in DB");
         System.out.println("------------------------------------------------");
 
         Comment comment1 = new Comment("comment1");
@@ -62,6 +73,33 @@ public class EntityLoader implements CommandLineRunner {
         wishListRepository.save(wishList2);
         wishListRepository.save(wishList3);
 
+
+    }
+
+    private void loadUserAndRoles() {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        System.out.println(encoder.encode("password"));
+        String encoded = "{bcrypt}" + encoder.encode("password");
+        System.out.println(encoded);
+
+        Role userRole = new Role("ROLE_USER");
+        roleRepository.save(userRole);
+
+        Role adminRole = new Role("ROLE_ADMIN");
+        roleRepository.save(adminRole);
+
+        User user = new User("username", encoded);
+        user.addRole(userRole);
+        userRepository.save(user);
+
+        User admin = new User("adminname", encoded);
+        admin.addRole(adminRole);
+        userRepository.save(admin);
+
+        User superUser = new User("superuser", encoded);
+        superUser.setRoles(new HashSet<>(Arrays.asList(userRole, adminRole)));
+        userRepository.save(superUser);
 
     }
 }

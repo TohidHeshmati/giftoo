@@ -18,8 +18,6 @@ import java.util.*;
 @Entity
 public class User implements UserDetails {
 
-    // TODO implement User and Role Entity at the end
-    // TODO to: wishlist, wish, vote, comment
 
     @Id
     @NotNull
@@ -33,8 +31,8 @@ public class User implements UserDetails {
     @Size(min = 8, max = 31)
     private String email;
 
-    @NotNull @NonNull
-    private String userName;
+    @NotNull @NonNull @Column(unique = true)
+    private String username;
 
     @NotNull @NonNull
     private String password;
@@ -77,7 +75,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
@@ -98,5 +96,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void addRole(Role userRole) {
+        this.roles.add(userRole);
+    }
+
+    public void addRoles(Set<Role> roles) {
+        roles.forEach(this::addRole);
     }
 }
